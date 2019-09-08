@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="helloWorld" class="model.HelloWorld"/>
+
+    <bean id="helloNameConstr" class="model.HelloName">
+            <constructor-arg value="Adrian"/>
+    </bean>
+    <bean id="helloNameSetter" class="model.HelloName">
+        <property name="name" value="Michalina"/>
+    </bean>
+
+    <bean id="propertyConfiguerer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>application.properties</value>
+        </property>
+    </bean>
+
+    <bean id="osoba" class="i18n.Person">
+        <constructor-arg value="${person.default.firstName}" name="firstName"/>
+        <constructor-arg value="${person.default.lastName}" index="1"/>
+    </bean>
+
+    <bean id="greet_pl" class="i18n.Greeting">
+        <constructor-arg value="Witaj"/>
+        <constructor-arg ref="osoba"/>
+    </bean>
+
+    <bean id="greet_en" class="i18n.Greeting">
+        <constructor-arg value="Welcome"/>
+        <constructor-arg ref="osoba"/>
+    </bean>
+
+    <bean id="greet_ru" class="i18n.Greeting">
+        <constructor-arg value="Priviet"/>
+        <constructor-arg ref="osoba"/>
+    </bean>
+
+</beans>
